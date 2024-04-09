@@ -11,7 +11,7 @@ export const Header = ({ showBackButton = false }: HeaderProps) => {
 		<View className='w-full flex-row items-center justify-center'>
 			{showBackButton && (
 				<TouchableOpacity className='flex-1'>
-					<LucideChevronLeft className='size-8 text-primary' />
+					<LucideChevronLeft className='size-8 text-foreground' />
 				</TouchableOpacity>
 			)}
 

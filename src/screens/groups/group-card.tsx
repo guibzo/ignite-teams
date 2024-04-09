@@ -12,8 +12,9 @@ export const GroupCard = ({ title, ...props }: GroupCardProps) => {
 			className='w-full h-[92px] bg-secondary rounded-md flex-row items-center p-6 mb-3'
 		>
 			<LucideUsers
-				className='size-8 text-secondary-foreground mr-5'
-				fill={'hsl(192, 25%, 83%)'}
+				className='size-8 text-secondary-foreground mr-5 fill-secondary-foreground'
+				width={32}
+				height={32}
 			/>
 
 			<Text className='text-secondary-foreground text-base'>{title}</Text>

@@ -1,10 +1,10 @@
-import { GroupsScreen } from '@/screens/groups'
+import { NewGroupScreen } from '@/screens/new-group'
 import './global.css'
 
 export default function App() {
 	return (
 		<>
-			<GroupsScreen />
+			<NewGroupScreen />
 		</>
 	)
 }
