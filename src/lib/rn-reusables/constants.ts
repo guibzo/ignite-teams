@@ -1,18 +1,18 @@
 export const NAV_THEME = {
 	light: {
-		background: '258 70% 100%', // background
-		border: '220 13% 91%', // border
-		card: '258 70% 100%', // card
-		notification: '19 98% 27%', // destructive
-		primary: '258 58% 37%', // primary
-		text: '258 77% 0%', // foreground
+		background: '0 0% 100%', // background
+		border: '0 0% 89.8%', // border
+		card: '0 0% 100%', // card
+		notification: '0 62.8% 30.6%', // destructive
+		primary: '0 72.2% 50.6%', // primary
+		text: '0 0% 98%', // foreground
 	},
 	dark: {
-		background: '253 53% 3%', // background
-		border: '215 27.9% 16.9%', // border
-		card: '258 53% 3%', // card
-		notification: '19 98% 46%', // destructive
-		primary: '258 58% 37%', // primary
-		text: '258 40% 97%', // foreground
+		background: '0 0% 3.9%', // background
+		border: '0 0% 14.9%', // border
+		card: '0 0% 3.9%', // card
+		notification: '0 62.8% 30.6%', // destructive
+		primary: '0 72.2% 50.6%', // primary
+		text: '0 0% 98%', // foreground
 	},
 }

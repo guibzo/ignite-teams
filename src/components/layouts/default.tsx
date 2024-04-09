@@ -1,10 +1,25 @@
 import { ReactNode } from 'react'
-import { View } from 'react-native'
+import { StatusBar, View } from 'react-native'
+import { LoadingIndicator } from '../loading-indicator'
 
 export const DefaultLayout = ({ children }: { children: ReactNode }) => {
+	const loading = false
+
 	return (
-		<View className='w-full border border-border bg-background text-primary-foreground  px-4 py-12 min-h-screen h-full gap-y-3 flex items-center'>
-			{children}
-		</View>
+		<>
+			{loading ? (
+				<LoadingIndicator />
+			) : (
+				<View className='w-full antialiased border border-border bg-background text-primary-foreground  px-4 py-12 flex-1 h-full gap-y-3 flex items-center'>
+					<StatusBar
+						barStyle={'light-content'}
+						backgroundColor={'transparent'}
+						translucent
+					/>
+
+					{children}
+				</View>
+			)}
+		</>
 	)
 }
