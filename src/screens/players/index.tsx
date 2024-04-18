@@ -9,14 +9,22 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Players } from '@/data/players'
 import { Teams } from '@/data/teams'
+import { useRoute } from '@react-navigation/native'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { PlayerCard } from './player-card'
 
+type RouteParams = {
+  group: string
+}
+
 export const PlayersScreen = () => {
   const [players, setPlayers] = useState<Player[]>(Players)
   const [teams, setTeams] = useState<Team[]>(Teams)
+
+  const route = useRoute()
+  const { group } = route.params as RouteParams
 
   const handleSetActiveTeam = (teamIndex: number) => {
     const newTeams = teams.map((team, index) => {
@@ -45,7 +53,7 @@ export const PlayersScreen = () => {
       <Header showBackButton />
 
       <Title
-        title='Integrantes do grupo'
+        title={group}
         subtitle='adicione os participantes e separe os times'
       />
 

@@ -1,6 +1,7 @@
 import { MainRouter } from '@/routes/router'
 import * as ScreenOrientation from 'expo-screen-orientation'
 import { useEffect, useState } from 'react'
+import { View } from 'react-native'
 import './global.css'
 
 export default function App() {
@@ -17,8 +18,8 @@ export default function App() {
   }
 
   return (
-    <>
+    <View className='flex-1 bg-background'>
       <MainRouter />
-    </>
+    </View>
   )
 }
