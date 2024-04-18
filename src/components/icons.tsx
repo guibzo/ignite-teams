@@ -1,4 +1,12 @@
-import { LucideChevronLeft, LucideIcon, LucideSearchX, LucideUsers } from 'lucide-react-native'
+import {
+	LucideChevronLeft,
+	LucideIcon,
+	LucidePlus,
+	LucideSearchX,
+	LucideUser,
+	LucideUsers,
+	LucideX,
+} from 'lucide-react-native'
 import { cssInterop } from 'nativewind'
 
 function interopIcon(icon: LucideIcon) {
@@ -15,6 +23,9 @@ function interopIcon(icon: LucideIcon) {
 
 interopIcon(LucideChevronLeft)
 interopIcon(LucideUsers)
+interopIcon(LucideUser)
+interopIcon(LucideX)
 interopIcon(LucideSearchX)
+interopIcon(LucidePlus)
 
-export { LucideChevronLeft, LucideSearchX, LucideUsers }
+export { LucideChevronLeft, LucidePlus, LucideSearchX, LucideUser, LucideUsers, LucideX }

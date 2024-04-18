@@ -3,23 +3,23 @@ import { StatusBar, View } from 'react-native'
 import { LoadingIndicator } from '../loading-indicator'
 
 export const DefaultLayout = ({ children }: { children: ReactNode }) => {
-	const loading = false
+  const loading = false
 
-	return (
-		<>
-			{loading ? (
-				<LoadingIndicator />
-			) : (
-				<View className='w-full antialiased border border-border bg-background text-primary-foreground  px-8 py-12 flex-1 h-full gap-y-3 flex items-center'>
-					<StatusBar
-						barStyle={'light-content'}
-						backgroundColor={'transparent'}
-						translucent
-					/>
+  return (
+    <>
+      {loading ? (
+        <LoadingIndicator />
+      ) : (
+        <View className='w-full antialiased border border-border bg-background text-primary-foreground px-8 py-12 flex-1 h-full gap-y-3 flex items-center'>
+          <StatusBar
+            barStyle={'light-content'}
+            backgroundColor={'transparent'}
+            translucent
+          />
 
-					{children}
-				</View>
-			)}
-		</>
-	)
+          {children}
+        </View>
+      )}
+    </>
+  )
 }
