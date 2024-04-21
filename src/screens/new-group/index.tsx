@@ -4,6 +4,7 @@ import { DefaultLayout } from '@/components/layouts/default'
 import { Title } from '@/components/title'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { createGroup } from '@/storage/group/create-group'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { Text, View } from 'react-native'
@@ -12,6 +13,16 @@ export const NewGroupScreen = () => {
   const [groupName, setGroupName] = useState('')
 
   const { navigate } = useNavigation()
+
+  const handleCreateNewGroup = async () => {
+    try {
+      await createGroup(groupName)
+
+      return navigate('players', { group: groupName })
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   return (
     <DefaultLayout>
@@ -39,7 +50,7 @@ export const NewGroupScreen = () => {
           <Button className='flex-row flex w-full justify-center items-center'>
             <Text
               className='text-foreground'
-              onPress={() => navigate('players', { group: groupName })}
+              onPress={handleCreateNewGroup}
             >
               Criar
             </Text>

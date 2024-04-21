@@ -53,7 +53,7 @@ export const PlayersScreen = () => {
       <Header showBackButton />
 
       <Title
-        title={group}
+        title={JSON.stringify(group)}
         subtitle='adicione os participantes e separe os times'
       />
 
