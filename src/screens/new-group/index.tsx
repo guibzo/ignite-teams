@@ -5,9 +5,10 @@ import { Title } from '@/components/title'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { createGroup } from '@/storage/group/create-group'
+import { AppError } from '@/utils/app-error'
 import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
-import { Text, View } from 'react-native'
+import { Alert, Text, View } from 'react-native'
 
 export const NewGroupScreen = () => {
   const [groupName, setGroupName] = useState('')
@@ -16,11 +17,19 @@ export const NewGroupScreen = () => {
 
   const handleCreateNewGroup = async () => {
     try {
-      await createGroup(groupName)
+      if (groupName.trim().length === 0) {
+        return Alert.alert('Erro', 'Informe o nome do grupo.')
+      }
+
+      await createGroup(groupName.trim())
 
       return navigate('players', { group: groupName })
     } catch (err) {
-      console.error(err)
+      if (err instanceof AppError) {
+        return Alert.alert('Erro', err.message)
+      }
+
+      return Alert.alert('Erro', 'Não foi possível criar um novo grupo.')
     }
   }
 

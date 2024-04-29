@@ -14,6 +14,10 @@ export const GroupsScreen = () => {
 
   const { navigate } = useNavigation()
 
+  const handleOpenGroup = (group: string) => {
+    navigate('players', { group })
+  }
+
   useFocusEffect(
     useCallback(() => {
       const fetchGroups = async () => {
@@ -52,14 +56,12 @@ export const GroupsScreen = () => {
           <GroupCard
             key={index}
             title={item}
+            onPress={() => handleOpenGroup(item)}
           />
         )}
       />
 
-      <Button
-        variant='outline'
-        onPress={() => navigate('newGroup')}
-      >
+      <Button onPress={() => navigate('newGroup')}>
         <Text className='uppercase text-foreground text-sm'>Criar novo grupo</Text>
       </Button>
     </DefaultLayout>

@@ -9,10 +9,12 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Players } from '@/data/players'
 import { Teams } from '@/data/teams'
+import { addPlayerByGroup } from '@/storage/player/add-player-by-group'
+import { AppError } from '@/utils/app-error'
 import { useRoute } from '@react-navigation/native'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Alert, FlatList, Text, TouchableOpacity, View } from 'react-native'
 import { PlayerCard } from './player-card'
 
 type RouteParams = {
@@ -22,9 +24,39 @@ type RouteParams = {
 export const PlayersScreen = () => {
   const [players, setPlayers] = useState<Player[]>(Players)
   const [teams, setTeams] = useState<Team[]>(Teams)
+  const [newPlayerName, setNewPlayerName] = useState('')
 
   const route = useRoute()
   const { group } = route.params as RouteParams
+
+  const handleAddPlayerOnTeam = async () => {
+    if (newPlayerName.trim().length === 0) {
+      return Alert.alert('Erro', 'Informe o nome do participante do time.')
+    }
+
+    const newPlayer = {
+      name: newPlayerName,
+      team: teams.filter((team) => team.isActive)[0].name,
+    }
+
+    try {
+      await addPlayerByGroup({
+        newPlayer,
+        group,
+      })
+
+      return Alert.alert('Sucesso', 'Jogador adicionado com sucesso.')
+
+      // const players = await getPlayersByGroup(group)
+    } catch (err) {
+      if (err instanceof AppError) {
+        return Alert.alert('Erro', err.message)
+      }
+
+      console.log(err)
+      return Alert.alert('Erro', 'Ocorreu um erro ao adicionar o participante.')
+    }
+  }
 
   const handleSetActiveTeam = (teamIndex: number) => {
     const newTeams = teams.map((team, index) => {
@@ -62,13 +94,16 @@ export const PlayersScreen = () => {
           <Input
             placeholder='Nome do participante'
             className='flex-1 border-transparent pl-3'
+            onChangeText={setNewPlayerName}
           />
 
-          <LucidePlus
-            className='size-6 text-primary'
-            width={24}
-            height={24}
-          />
+          <TouchableOpacity onPress={handleAddPlayerOnTeam}>
+            <LucidePlus
+              className='size-6 text-primary'
+              width={24}
+              height={24}
+            />
+          </TouchableOpacity>
         </View>
       </View>
 
